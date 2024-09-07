@@ -1,0 +1,28 @@
+# EditorConfig is awesome: http://EditorConfig.org
+#
+# root                      表明是最顶层的配置文件，发现设为 true 时，EditorConfig 插件才会停止查找 .editorconfig 文件
+# indent_style              缩进使用 tab 或者 space
+# indent_size               缩进为 space 时，缩进的字符数
+# tab_width                 缩进为 tab 时，缩进的宽度
+# end_of_line               换行符的类型。lf, cr, crlf三种
+# charset                   文件的 charset。有以下几种类型：latin1, utf-8, utf-8-bom, utf-16be, utf-16le
+# trim_trailing_whitespace  是否自动删除行尾空格（true：是，false：否）
+# insert_final_newline      文件是否使以空白行结尾（true：是，false：否）
+
+# top-most EditorConfig file
+root = true
+
+# Unix-style newlines with a newline ending every file
+[*]
+charset = utf-8
+end_of_line = lf
+indent_style = space
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[{Makefile,go.mod,go.sum,*.go}]
+indent_style = tab
+indent_size = 8
+
+[*.md]
+trim_trailing_whitespace = false

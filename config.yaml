@@ -1,0 +1,82 @@
+#服务配置 示例
+app:
+  name: 服务名称
+  version: v0.0.1
+  env:  local
+log:
+  prefix: frame-srv
+  level: debug # debug info warn error panic
+  pathDir: ./logs/
+  development: true
+  disableCaller: true
+  consoleEncoder: true # 本地可以为true
+server:
+  govern:
+    addr: :8090
+  http:
+    addr: :8080
+    readTimeout: 1s
+    writeTimeout: 1s
+  grpc:
+    addr: :9090
+client:
+  srv-dict:
+    debug: true
+    address: :9090
+    block: false
+    dialTimeout: 3s
+    readTimeout: 1s
+mysql:
+  logLevel: info # silent error warn info
+  dsn: leju:leju@tcp(10.208.0.102:7306)/base_esf_leju_com?charset=utf8mb4&parseTime=True&loc=Local&readTimeout=1s&timeout=1s&writeTimeout=3s
+  dsnReplicas:
+    - leju:leju@tcp(10.208.0.102:7306)/base_esf_leju_com?charset=utf8mb4&parseTime=True&loc=Local&readTimeout=1s&timeout=1s&writeTimeout=3s
+    - leju:leju@tcp(10.208.0.102:7306)/base_esf_leju_com?charset=utf8mb4&parseTime=True&loc=Local&readTimeout=1s&timeout=1s&writeTimeout=3s
+  connMaxLifeTime: 30s
+  maxIdleConns: 50
+  maxOpenConns: 100
+redis:
+  addrs:
+    - mem.lejuesf.com:7516
+  mode: stub
+  db: 0
+  debug: true
+redis-cluster:
+  addrs:
+    - 127.0.0.1:6379
+    - 127.0.0.1:6380
+  mode: cluster
+mongo:
+  uri: mongodb://esf:esf@mongo.lejuesf.com:27017/admin?readPreference=secondaryPreferred
+  maxPoolSize: 10
+  database: test
+  coll: golang_frame
+elasticsearch:
+  url:
+    - http://10.208.0.211:39200
+  version: v7
+  debug: true
+cron:
+    withSeconds: false
+    concurrentDelay: -1
+    immediatelyRun: false
+    distributedTask: true
+
+test:
+  string: hello
+  bool: true
+  int: 123456
+  int32: 32
+  int64: 64
+  float64: 123.456
+  time: 2023-09-11 11:22:33
+  duration: 10s
+  int-slice:
+    - 1
+    - 2
+    - 3
+  string-slice:
+    - 1
+    - 2
+    - 3
+
