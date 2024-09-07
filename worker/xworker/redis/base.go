@@ -3,16 +3,16 @@ package redis
 
 import (
 	"errors"
-	"esfgit.leju.com/golang/frame/config"
-	"esfgit.leju.com/golang/frame/xlog"
+	"github.com/Remember9/frame/config"
+	"github.com/Remember9/frame/xlog"
 	"github.com/go-redis/redis/v8"
 	"net"
 )
 
 type redisMq struct {
-	stream     string //stream名
+	stream     string // stream名
 	Rdb        redis.Cmdable
-	originName string //未加前缀队列名
+	originName string // 未加前缀队列名
 }
 
 // StreamName /**获取队列名称（需要加入根据预发和正式相关前缀处理）

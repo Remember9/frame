@@ -1,16 +1,16 @@
 package xmux
 
 import (
-	"esfgit.leju.com/golang/frame/config"
-	"esfgit.leju.com/golang/frame/util/xcast"
-	"esfgit.leju.com/golang/frame/util/xtransport/http"
-	"esfgit.leju.com/golang/frame/xlog"
+	"github.com/Remember9/frame/config"
+	"github.com/Remember9/frame/util/xcast"
+	"github.com/Remember9/frame/util/xtransport/http"
+	"github.com/Remember9/frame/xlog"
 	"time"
 )
 
 const ModName = "server.xmux"
 
-//Config HTTP config
+// Config HTTP config
 type Config struct {
 	Addr         string
 	ReadTimeout  time.Duration

@@ -2,7 +2,7 @@ package provider
 
 import (
 	"context"
-	"esfgit.leju.com/golang/frame/config"
+	"github.com/Remember9/frame/config"
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/attribute"
 	"go.opentelemetry.io/otel/exporters/zipkin"
@@ -24,16 +24,16 @@ func InitZipkinTracer(url string) func() {
 		if appConfig.Version != "" {
 			name = name + ":" + appConfig.Version
 		}
-		//carrier.Set(serviceHeader, appConfig.Name+"_"+appConfig.Version)
+		// carrier.Set(serviceHeader, appConfig.Name+"_"+appConfig.Version)
 	}
 
 	exporter, err := zipkin.New(
 		url,
-		//zipkin.WithLogger(logger),
-		//zipkin.WithSDKOptions(sdktrace.WithSampler(sdktrace.AlwaysSample())),
+		// zipkin.WithLogger(logger),
+		// zipkin.WithSDKOptions(sdktrace.WithSampler(sdktrace.AlwaysSample())),
 	)
 	if err != nil {
-		//logger.Log(log.LevelError, "zipkin.New", err.Error())
+		// logger.Log(log.LevelError, "zipkin.New", err.Error())
 		panic(err)
 	}
 

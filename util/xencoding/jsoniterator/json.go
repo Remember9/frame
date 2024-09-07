@@ -2,7 +2,7 @@ package jsoniterator
 
 import (
 	json0 "encoding/json"
-	encoding "esfgit.leju.com/golang/frame/util/xencoding"
+	encoding "github.com/Remember9/frame/util/xencoding"
 	jsoniter "github.com/json-iterator/go"
 )
 
@@ -11,7 +11,9 @@ const Name = "json"
 
 var json = jsoniter.ConfigCompatibleWithStandardLibrary
 
-/*var (
+/*
+var (
+
 	// MarshalOptions is a configurable JSON format marshaller.
 	MarshalOptions = protojson.MarshalOptions{
 		EmitUnpopulated: true,
@@ -20,11 +22,12 @@ var json = jsoniter.ConfigCompatibleWithStandardLibrary
 	UnmarshalOptions = protojson.UnmarshalOptions{
 		DiscardUnknown: true,
 	}
+
 )
 */
 func init() {
 	encoding.RegisterCodec(codec{})
-	//json.RegisterExtension(new(EmitDefaultExtension))
+	// json.RegisterExtension(new(EmitDefaultExtension))
 }
 
 // codec is a Codec implementation with json.

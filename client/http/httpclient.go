@@ -4,10 +4,10 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
-	"esfgit.leju.com/golang/frame/util/xencoding"
-	"esfgit.leju.com/golang/frame/util/xmiddware"
-	http2 "esfgit.leju.com/golang/frame/util/xtransport/http"
-	httputil2 "esfgit.leju.com/golang/frame/util/xtransport/httputil"
+	"github.com/Remember9/frame/util/xencoding"
+	"github.com/Remember9/frame/util/xmiddware"
+	http2 "github.com/Remember9/frame/util/xtransport/http"
+	httputil2 "github.com/Remember9/frame/util/xtransport/httputil"
 	"github.com/go-kit/kit/endpoint"
 	httptransport "github.com/go-kit/kit/transport/http"
 	"io"
@@ -21,7 +21,7 @@ func NewHttpClinet(method string, tgt *url.URL, replyType interface{}, options .
 	options = append(options, httptransport.ClientBefore(http2.HttpClientFilter(xmiddware.GetHttpClientMiddleware())))
 
 	e := httptransport.NewClient(method, tgt, httptransport.EncodeJSONRequest, DefaultResponseDecoder(replyType), options...).Endpoint()
-	//e=tracing.Client(e)
+	// e=tracing.Client(e)
 	return e
 }
 

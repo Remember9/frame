@@ -1,10 +1,10 @@
 package xcron
 
 import (
-	"esfgit.leju.com/golang/frame/client/redis"
-	"esfgit.leju.com/golang/frame/config"
-	"esfgit.leju.com/golang/frame/xlog"
 	"fmt"
+	"github.com/Remember9/frame/client/redis"
+	"github.com/Remember9/frame/config"
+	"github.com/Remember9/frame/xlog"
 	"github.com/robfig/cron/v3"
 	"golang.org/x/net/context"
 	"runtime"

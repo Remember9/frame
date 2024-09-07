@@ -3,7 +3,7 @@
 package proto
 
 import (
-	encoding "esfgit.leju.com/golang/frame/util/xencoding"
+	encoding "github.com/Remember9/frame/util/xencoding"
 
 	"google.golang.org/protobuf/proto"
 )

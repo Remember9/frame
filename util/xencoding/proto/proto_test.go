@@ -5,7 +5,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	testData "esfgit.leju.com/golang/frame/util/xencoding/testdata/encoding"
+	testData "github.com/Remember9/frame/util/xencoding/testdata/encoding"
 )
 
 func TestName(t *testing.T) {

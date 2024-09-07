@@ -1,7 +1,7 @@
 package xgo
 
 import (
-	"esfgit.leju.com/golang/frame/util/xerrors"
+	"github.com/Remember9/frame/util/xerrors"
 	"testing"
 	"time"
 )

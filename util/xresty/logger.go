@@ -1,7 +1,7 @@
 package xresty
 
 import (
-	"esfgit.leju.com/golang/frame/xlog"
+	"github.com/Remember9/frame/xlog"
 	"github.com/go-resty/resty/v2"
 )
 

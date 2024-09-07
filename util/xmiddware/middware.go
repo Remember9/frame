@@ -2,8 +2,8 @@ package xmiddware
 
 import (
 	"context"
-	"esfgit.leju.com/golang/frame/util/xmiddware/metadata"
-	"esfgit.leju.com/golang/frame/util/xmiddware/xtrace/tracing"
+	"github.com/Remember9/frame/util/xmiddware/metadata"
+	"github.com/Remember9/frame/util/xmiddware/xtrace/tracing"
 	"github.com/go-kit/kit/endpoint"
 	"go.opentelemetry.io/otel/trace"
 )

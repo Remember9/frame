@@ -1,9 +1,9 @@
 package route
 
 import (
-	"esfgit.leju.com/golang/frame/server/xmux"
-	"esfgit.leju.com/golang/frame/util/xswagger"
-	_ "esfgit.leju.com/golang/frame/util/xswagger/statik"
+	"github.com/Remember9/frame/server/xmux"
+	"github.com/Remember9/frame/util/xswagger"
+	_ "github.com/Remember9/frame/util/xswagger/statik"
 	"github.com/rakyll/statik/fs"
 	"net/http"
 )
@@ -13,7 +13,7 @@ func RegisterSwagger(s *xmux.Server) {
 		panic("ServiceInfo Scheme" + "不能为空")
 	}
 	xswagger.Services.AddHost(s.Info().Label(), s.Info().Scheme)
-	//s.PathPrefix("/s/").Handler(http.StripPrefix("/s/", fs))
+	// s.PathPrefix("/s/").Handler(http.StripPrefix("/s/", fs))
 	s.HandleFunc("/q/services", func(w http.ResponseWriter, r *http.Request) {
 		services, err := xswagger.Services.GetSwagger()
 		if err != nil {

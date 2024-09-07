@@ -2,7 +2,7 @@ package grpc
 
 import (
 	"context"
-	"esfgit.leju.com/golang/frame/util/xtransport"
+	"github.com/Remember9/frame/util/xtransport"
 	"github.com/go-kit/kit/endpoint"
 	"google.golang.org/grpc"
 	grpcmd "google.golang.org/grpc/metadata"

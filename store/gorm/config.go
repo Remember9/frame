@@ -1,9 +1,9 @@
 package gorm
 
 import (
-	"esfgit.leju.com/golang/frame/config"
-	"esfgit.leju.com/golang/frame/util/xcast"
-	"esfgit.leju.com/golang/frame/xlog"
+	"github.com/Remember9/frame/config"
+	"github.com/Remember9/frame/util/xcast"
+	"github.com/Remember9/frame/xlog"
 	"gorm.io/gorm"
 	"time"
 )

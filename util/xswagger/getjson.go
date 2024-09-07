@@ -1,13 +1,13 @@
 package xswagger
 
 import (
-	"esfgit.leju.com/golang/frame/config"
+	"github.com/Remember9/frame/config"
 	"log"
 	"reflect"
 	"strings"
 )
 
-//根据逻辑修改
+// 根据逻辑修改
 type fieldi struct {
 	Name, Type, Format, SubType, SubFormat string
 }
@@ -134,7 +134,7 @@ func reflictValue2(p interface{}) {
 			tmpf[srvName][fname] = tmpfieldi
 		}
 
-		//fields[srvName] = append(fields[srvName],tmpfieldi)
+		// fields[srvName] = append(fields[srvName],tmpfieldi)
 		if field.Kind() == reflect.Slice && typeOfType.Field(i).Type.Elem().Kind() == reflect.Ptr {
 			reflictValue2(reflect.New(field.Type().Elem().Elem()).Interface())
 		}

@@ -2,7 +2,7 @@ package gorm
 
 import (
 	"context"
-	"esfgit.leju.com/golang/frame/xlog"
+	"github.com/Remember9/frame/xlog"
 	gormlogger "gorm.io/gorm/logger"
 	"time"
 )

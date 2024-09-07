@@ -3,10 +3,10 @@ package xworker
 import (
 	"context"
 	"errors"
-	"esfgit.leju.com/golang/frame/config"
-	"esfgit.leju.com/golang/frame/util/xpool"
-	"esfgit.leju.com/golang/frame/xlog"
 	"fmt"
+	"github.com/Remember9/frame/config"
+	"github.com/Remember9/frame/util/xpool"
+	"github.com/Remember9/frame/xlog"
 )
 
 type ConsumerFunc interface {
@@ -34,7 +34,7 @@ func (w *WorkerBasic) Run() error {
 			err := c.Serve(ctx)
 			if err != nil {
 				xlog.Panic(err.Error(), xlog.FieldErr(err))
-				//panic(err)
+				// panic(err)
 			}
 		}(v)
 	}
@@ -48,7 +48,7 @@ func NewWorker(c ...ConsumerFunc) *WorkerBasic {
 	err := InitPool()
 	if err != nil {
 		xlog.Panic(err.Error(), xlog.FieldErr(err))
-		//panic(err)
+		// panic(err)
 	}
 	return &WorkerBasic{consumers: c}
 }

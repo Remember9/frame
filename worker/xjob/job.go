@@ -1,7 +1,7 @@
 package xjob
 
 import (
-	"esfgit.leju.com/golang/frame/flag"
+	"github.com/Remember9/frame/flag"
 )
 
 func init() {

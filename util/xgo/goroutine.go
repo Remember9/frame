@@ -6,8 +6,8 @@ import (
 	"sync"
 	"time"
 
+	"github.com/Remember9/frame/xlog"
 	"github.com/codegangsta/inject"
-	"esfgit.leju.com/golang/frame/xlog"
 )
 
 // Serial 串行

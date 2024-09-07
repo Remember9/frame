@@ -2,7 +2,7 @@ package grpc
 
 import (
 	"context"
-	"esfgit.leju.com/golang/frame/xlog"
+	"github.com/Remember9/frame/xlog"
 	"google.golang.org/grpc"
 	"time"
 )

@@ -2,9 +2,9 @@ package tracing
 
 import (
 	"context"
-	"esfgit.leju.com/golang/frame/config"
-	provider2 "esfgit.leju.com/golang/frame/util/xmiddware/xtrace/provider"
-	"esfgit.leju.com/golang/frame/util/xtransport"
+	"github.com/Remember9/frame/config"
+	provider2 "github.com/Remember9/frame/util/xmiddware/xtrace/provider"
+	"github.com/Remember9/frame/util/xtransport"
 	"github.com/go-kit/kit/endpoint"
 	"go.opentelemetry.io/otel/propagation"
 	"go.opentelemetry.io/otel/trace"
@@ -50,13 +50,13 @@ func Server(opts ...Option) endpoint.Middleware {
 	}
 }
 func Client(tracer *Tracer, opts ...Option) endpoint.Middleware {
-	//tracer := NewTracer(trace.SpanKindClient, opts...)
+	// tracer := NewTracer(trace.SpanKindClient, opts...)
 	return func(next endpoint.Endpoint) endpoint.Endpoint {
 		return func(ctx context.Context, request interface{}) (reply interface{}, err error) {
 			if tr, ok := xtransport.FromClientContext(ctx); ok {
 				var span trace.Span
 				ctx, span = tracer.Start(ctx, tr.Operation(), tr.RequestHeader())
-				//span.SetName(operationName)
+				// span.SetName(operationName)
 				SetClientSpan(ctx, span, request)
 				defer func() { tracer.End(ctx, span, reply, err) }()
 			}

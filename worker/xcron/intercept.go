@@ -1,7 +1,7 @@
 package xcron
 
 import (
-	"esfgit.leju.com/golang/frame/xlog"
+	"github.com/Remember9/frame/xlog"
 	"github.com/robfig/cron/v3"
 	"sync"
 	"time"

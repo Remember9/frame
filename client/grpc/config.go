@@ -1,11 +1,11 @@
 package grpc
 
 import (
-	"esfgit.leju.com/golang/frame/config"
-	"esfgit.leju.com/golang/frame/util/xcast"
-	"esfgit.leju.com/golang/frame/util/xmiddware"
-	grpc2 "esfgit.leju.com/golang/frame/util/xtransport/grpc"
-	"esfgit.leju.com/golang/frame/xlog"
+	"github.com/Remember9/frame/config"
+	"github.com/Remember9/frame/util/xcast"
+	"github.com/Remember9/frame/util/xmiddware"
+	grpc2 "github.com/Remember9/frame/util/xtransport/grpc"
+	"github.com/Remember9/frame/xlog"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/keepalive"
 	"time"
@@ -45,7 +45,7 @@ func Build(name string) *grpc.ClientConn {
 	}
 	grpcClientConfig.Name = name
 
-	//链路追踪和元数据传递
+	// 链路追踪和元数据传递
 	middlewares := xmiddware.GetGrpcClinetMiddleware()
 	grpcClientConfig.dialOptions = append(grpcClientConfig.dialOptions,
 		grpc.WithChainUnaryInterceptor(grpc2.UnaryGrpcClientInterceptor(0, middlewares)))

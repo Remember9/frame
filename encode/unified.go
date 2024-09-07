@@ -1,6 +1,6 @@
 package encode
 
-import "esfgit.leju.com/golang/frame/util/xerrors"
+import "github.com/Remember9/frame/util/xerrors"
 
 const (
 	SuccessCode = 0 // 成功返回码

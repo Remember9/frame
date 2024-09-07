@@ -1,10 +1,10 @@
 package gorm
 
 import (
-	"esfgit.leju.com/golang/frame/config"
-	"esfgit.leju.com/golang/frame/util/xcast"
-	"esfgit.leju.com/golang/frame/xlog"
 	"fmt"
+	"github.com/Remember9/frame/config"
+	"github.com/Remember9/frame/util/xcast"
+	"github.com/Remember9/frame/xlog"
 	"golang.org/x/net/context"
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
@@ -47,7 +47,7 @@ func TestBuild(t *testing.T) {
 		Select("name", "status").
 		Where("name = ?", "test2").
 		Order(clause.OrderByColumn{Column: clause.Column{Name: "status"}, Desc: true}).
-		//Order("status DESC").
+		// Order("status DESC").
 		Limit(2).
 		Find(&dictTest).Error
 	if err != nil {
@@ -61,7 +61,7 @@ func TestOnConflict(t *testing.T) {
 
 	var dictTest = []DictTest{{ID: 3, Name: "test11"}, {ID: 2, Name: "test12", Status: 1}, {ID: 1, Name: "test13"}}
 
-	//err := db.Create(&dictTest).Error
+	// err := db.Create(&dictTest).Error
 
 	err := db.Clauses(clause.OnConflict{
 		Columns:   []clause.Column{{Name: "id"}},
@@ -110,7 +110,7 @@ func TestExpr(t *testing.T) {
 func TestTx(t *testing.T) {
 	db := Build("mysql")
 
-	//rand.Seed(time.Now().UnixNano())
+	// rand.Seed(time.Now().UnixNano())
 
 	s := time.Now()
 	num := 10
@@ -120,8 +120,8 @@ func TestTx(t *testing.T) {
 	for i := 0; i < num; i++ {
 		go func(t int) {
 			defer wg.Done()
-			//err := CreateAnimals(db, "test"+cast.ToString(t), cast.ToFloat64(rand.Intn(1<<10)))
-			//err := CreateAnimals2(db, "test"+xcast.ToString(t), xcast.ToFloat64(rand.Intn(1<<10)))
+			// err := CreateAnimals(db, "test"+cast.ToString(t), cast.ToFloat64(rand.Intn(1<<10)))
+			// err := CreateAnimals2(db, "test"+xcast.ToString(t), xcast.ToFloat64(rand.Intn(1<<10)))
 
 			err := SelectAnimals3(db, "test"+xcast.ToString(t))
 			if err != nil {
@@ -131,23 +131,23 @@ func TestTx(t *testing.T) {
 	}
 	wg.Wait()
 
-	//wg := &sync.WaitGroup{}
-	//wg.Add(num)
-	//for i := 0; i < num; i++ {
+	// wg := &sync.WaitGroup{}
+	// wg.Add(num)
+	// for i := 0; i < num; i++ {
 	//	go func(n int) {
 	//		defer wg.Done()
 	//		ss := time.Now()
 	//		xlog.Debug("test concurrent", xlog.Duration("cost", time.Since(ss)), xlog.Int("No.", n))
 	//	}(i)
-	//}
-	//wg.Wait()
+	// }
+	// wg.Wait()
 
-	//for i := 0; i < num; i++ {
+	// for i := 0; i < num; i++ {
 	//	err := SelectAnimals3(db, "test"+xcast.ToString(t))
 	//	if err != nil {
 	//		fmt.Println("err-", t, err)
 	//	}
-	//}
+	// }
 
 	t.Log(time.Since(s))
 }

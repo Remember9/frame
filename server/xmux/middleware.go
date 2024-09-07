@@ -2,8 +2,8 @@ package xmux
 
 import (
 	"fmt"
-	"esfgit.leju.com/golang/frame/util/xnet"
-	"esfgit.leju.com/golang/frame/xlog"
+	"github.com/Remember9/frame/util/xnet"
+	"github.com/Remember9/frame/xlog"
 	"net/http"
 	"runtime"
 	"time"

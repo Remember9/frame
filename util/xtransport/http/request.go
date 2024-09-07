@@ -1,8 +1,8 @@
 package http
 
 import (
-	encoding "esfgit.leju.com/golang/frame/util/xencoding"
-	"esfgit.leju.com/golang/frame/util/xencoding/form"
+	encoding "github.com/Remember9/frame/util/xencoding"
+	"github.com/Remember9/frame/util/xencoding/form"
 	"net/http"
 )
 

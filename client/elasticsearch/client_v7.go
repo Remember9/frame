@@ -2,9 +2,9 @@ package elasticsearch
 
 import (
 	"context"
-	"esfgit.leju.com/golang/frame/encode"
-	"esfgit.leju.com/golang/frame/xlog"
 	"fmt"
+	"github.com/Remember9/frame/encode"
+	"github.com/Remember9/frame/xlog"
 	"github.com/olivere/elastic/v7"
 	"net"
 	"net/http"
@@ -253,15 +253,15 @@ func (c *elasticV7) QueryBody(sp *QueryBody) (mixedQuery *elastic.BoolQuery) {
 	mixedQuery = elastic.NewBoolQuery()
 	var queries []*queryParametersV7
 	nestedQueries := map[string]*elastic.BoolQuery{} // key: path  value: boolQuery
-	//fields
+	// fields
 	if len(sp.Fields) == 0 {
 		sp.Fields = []string{}
 	}
-	//where
+	// where
 	if &sp.Where == nil {
-		sp.Where = QueryBodyWhere{} //要给个默认值
+		sp.Where = QueryBodyWhere{} // 要给个默认值
 	}
-	//where - eq
+	// where - eq
 	for k, v := range sp.Where.EQ {
 		queries = append(queries, &queryParametersV7{
 			field:     k,
@@ -269,7 +269,7 @@ func (c *elasticV7) QueryBody(sp *QueryBody) (mixedQuery *elastic.BoolQuery) {
 			esQuery:   elastic.NewTermQuery(k, v),
 		})
 	}
-	//where - or
+	// where - or
 	for k, v := range sp.Where.Or {
 		queries = append(queries, &queryParametersV7{
 			field:     k,
@@ -277,7 +277,7 @@ func (c *elasticV7) QueryBody(sp *QueryBody) (mixedQuery *elastic.BoolQuery) {
 			esQuery:   elastic.NewTermQuery(k, v),
 		})
 	}
-	//where - in
+	// where - in
 	for k, v := range sp.Where.In {
 		if len(v) > 1024 {
 			xlog.Errorf("where in 超过1024 error(%v)", v)
@@ -289,7 +289,7 @@ func (c *elasticV7) QueryBody(sp *QueryBody) (mixedQuery *elastic.BoolQuery) {
 			esQuery:   elastic.NewTermsQuery(k, v...),
 		})
 	}
-	//where - range
+	// where - range
 	ranges, err := c.queryBasicRange(sp.Where.Range)
 	if err != nil {
 		xlog.Error("Es", xlog.FieldErr(err))
@@ -301,18 +301,18 @@ func (c *elasticV7) QueryBody(sp *QueryBody) (mixedQuery *elastic.BoolQuery) {
 			esQuery:   v,
 		})
 	}
-	//where - combo
+	// where - combo
 	for _, v := range sp.Where.Combo {
-		//外面用bool+should+minimum包裹
+		// 外面用bool+should+minimum包裹
 		combo := elastic.NewBoolQuery()
-		//里面每个子项也是bool+should+minimum
+		// 里面每个子项也是bool+should+minimum
 		cmbEQ := elastic.NewBoolQuery()
 		cmbIn := elastic.NewBoolQuery()
 		cmbRange := elastic.NewBoolQuery()
 		cmbNotEQ := elastic.NewBoolQuery()
 		cmbNotIn := elastic.NewBoolQuery()
 		cmbNotRange := elastic.NewBoolQuery()
-		//所有的minimum
+		// 所有的minimum
 		if v.Min.Min == 0 {
 			v.Min.Min = 1
 		}
@@ -334,7 +334,7 @@ func (c *elasticV7) QueryBody(sp *QueryBody) (mixedQuery *elastic.BoolQuery) {
 		if v.Min.NotRange == 0 {
 			v.Min.NotRange = 1
 		}
-		//子项should
+		// 子项should
 		for _, vEQ := range v.EQ {
 			for eqK, eqV := range vEQ {
 				cmbEQ.Should(elastic.NewTermQuery(eqK, eqV))
@@ -367,7 +367,7 @@ func (c *elasticV7) QueryBody(sp *QueryBody) (mixedQuery *elastic.BoolQuery) {
 				cmbNotRange.Should(v)
 			}
 		}
-		//子项minimum
+		// 子项minimum
 		if len(v.EQ) > 0 {
 			combo.Should(cmbEQ.MinimumNumberShouldMatch(v.Min.EQ))
 		}
@@ -386,10 +386,10 @@ func (c *elasticV7) QueryBody(sp *QueryBody) (mixedQuery *elastic.BoolQuery) {
 		if len(v.NotRange) > 0 {
 			combo.MustNot(elastic.NewBoolQuery().Should(cmbNotRange.MinimumNumberShouldMatch(v.Min.NotRange)))
 		}
-		//合并子项
+		// 合并子项
 		mixedQuery.Filter(combo.MinimumNumberShouldMatch(v.Min.Min))
 	}
-	//where - like
+	// where - like
 	like, err := c.queryBasicLike(sp.Where.Like)
 	if err != nil {
 		xlog.Error("Es", xlog.FieldErr(err))
@@ -400,7 +400,7 @@ func (c *elasticV7) QueryBody(sp *QueryBody) (mixedQuery *elastic.BoolQuery) {
 			esQuery:   v,
 		})
 	}
-	//mixedQuery
+	// mixedQuery
 	for _, q := range queries {
 		// like  TODO like的map型字段也要支持must not和 nested
 		if q.field == "" && q.whereKind == "like" {
@@ -499,7 +499,7 @@ func (c *elasticV7) queryBasicLike(likeMap []QueryBodyWhereLike) (likeQuery []el
 			var kw []string
 			r := []rune(v.KW[0])
 			for i := 0; i < len(r); i++ {
-				if k := string(r[i : i+1]); !strings.ContainsAny(k, "~[](){}^?:\"\\/!+-=&* ") { //去掉特殊符号
+				if k := string(r[i : i+1]); !strings.ContainsAny(k, "~[](){}^?:\"\\/!+-=&* ") { // 去掉特殊符号
 					kw = append(kw, k)
 				} else if len(kw) > 1 && kw[len(kw)-1:][0] != "*" {
 					kw = append(kw, "*", " ", "*")
@@ -508,7 +508,7 @@ func (c *elasticV7) queryBasicLike(likeMap []QueryBodyWhereLike) (likeQuery []el
 			if len(kw) == 0 || strings.Join(kw, "") == "* *" {
 				continue
 			}
-			qs := elastic.NewQueryStringQuery("*" + strings.Trim(strings.Join(kw, ""), "* ") + "*").AllowLeadingWildcard(true) //默认是or
+			qs := elastic.NewQueryStringQuery("*" + strings.Trim(strings.Join(kw, ""), "* ") + "*").AllowLeadingWildcard(true) // 默认是or
 			if !v.Or {
 				qs.DefaultOperator("AND")
 			}
@@ -519,7 +519,7 @@ func (c *elasticV7) queryBasicLike(likeMap []QueryBodyWhereLike) (likeQuery []el
 		case LikeLevelMiddle:
 			// 单个字要特殊处理
 			if r := []rune(v.KW[0]); len(r) == 1 && len(v.KW) == 1 {
-				qs := elastic.NewQueryStringQuery("*" + string(r[:]) + "*").AllowLeadingWildcard(true) //默认是or
+				qs := elastic.NewQueryStringQuery("*" + string(r[:]) + "*").AllowLeadingWildcard(true) // 默认是or
 				if !v.Or {
 					qs.DefaultOperator("AND")
 				}
@@ -541,7 +541,7 @@ func (c *elasticV7) queryBasicLike(likeMap []QueryBodyWhereLike) (likeQuery []el
 				}
 			}
 		case "", LikeLevelLow:
-			qs := elastic.NewMultiMatchQuery(strings.Join(v.KW, " "), v.KWFields...).Type("best_fields").TieBreaker(0.6).MinimumShouldMatch("90%") //默认是and
+			qs := elastic.NewMultiMatchQuery(strings.Join(v.KW, " "), v.KWFields...).Type("best_fields").TieBreaker(0.6).MinimumShouldMatch("90%") // 默认是and
 			if v.Or {
 				qs.Operator("OR")
 			}

@@ -1,7 +1,7 @@
 package xlog
 
 import (
-	"esfgit.leju.com/golang/frame/config"
+	"github.com/Remember9/frame/config"
 )
 
 var logger *esflogger

@@ -2,8 +2,8 @@ package xgrpc
 
 import (
 	"context"
-	"esfgit.leju.com/golang/frame/server"
-	"esfgit.leju.com/golang/frame/xlog"
+	"github.com/Remember9/frame/server"
+	"github.com/Remember9/frame/xlog"
 	"google.golang.org/grpc"
 	"net"
 )

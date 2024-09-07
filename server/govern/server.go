@@ -1,8 +1,8 @@
 package govern
 
 import (
-	"esfgit.leju.com/golang/frame/server"
-	"esfgit.leju.com/golang/frame/xlog"
+	"github.com/Remember9/frame/server"
+	"github.com/Remember9/frame/xlog"
 	"golang.org/x/net/context"
 	"net"
 	"net/http"

@@ -2,7 +2,7 @@ package xgo
 
 import (
 	"fmt"
-	"esfgit.leju.com/golang/frame/util/xerrors"
+	"github.com/Remember9/frame/util/xerrors"
 	"sync/atomic"
 	"testing"
 

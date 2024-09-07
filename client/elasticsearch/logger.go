@@ -1,7 +1,7 @@
 package elasticsearch
 
 import (
-	"esfgit.leju.com/golang/frame/xlog"
+	"github.com/Remember9/frame/xlog"
 )
 
 type WrapErrorLogger struct{}

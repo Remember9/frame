@@ -2,10 +2,10 @@ package elasticsearch
 
 import (
 	"context"
-	"esfgit.leju.com/golang/frame/config"
-	"esfgit.leju.com/golang/frame/util/xcast"
-	"esfgit.leju.com/golang/frame/util/xstring"
-	"esfgit.leju.com/golang/frame/xlog"
+	"github.com/Remember9/frame/config"
+	"github.com/Remember9/frame/util/xcast"
+	"github.com/Remember9/frame/util/xstring"
+	"github.com/Remember9/frame/xlog"
 	"testing"
 )
 

@@ -8,8 +8,8 @@ import (
 	"google.golang.org/protobuf/types/known/timestamppb"
 	"google.golang.org/protobuf/types/known/wrapperspb"
 
-	encoding "esfgit.leju.com/golang/frame/util/xencoding"
-	"esfgit.leju.com/golang/frame/util/xencoding/testdata/complex"
+	encoding "github.com/Remember9/frame/util/xencoding"
+	"github.com/Remember9/frame/util/xencoding/testdata/complex"
 	"github.com/stretchr/testify/require"
 )
 

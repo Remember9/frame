@@ -1,17 +1,17 @@
 package redis
 
 import (
-	"esfgit.leju.com/golang/frame/config"
-	"esfgit.leju.com/golang/frame/util/xcast"
-	"esfgit.leju.com/golang/frame/xlog"
+	"github.com/Remember9/frame/config"
+	"github.com/Remember9/frame/util/xcast"
+	"github.com/Remember9/frame/xlog"
 	"github.com/go-redis/redis/v8"
 	"time"
 )
 
 const (
-	//ClusterMode using clusterClient
+	// ClusterMode using clusterClient
 	ClusterMode string = "cluster"
-	//StubMode using redisClient
+	// StubMode using redisClient
 	StubMode string = "stub"
 )
 

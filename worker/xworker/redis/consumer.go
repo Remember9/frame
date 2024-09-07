@@ -3,9 +3,9 @@ package redis
 import (
 	"context"
 	"encoding/json"
-	rLock "esfgit.leju.com/golang/frame/util/xlock/redis"
-	"esfgit.leju.com/golang/frame/xlog"
 	"fmt"
+	rLock "github.com/Remember9/frame/util/xlock/redis"
+	"github.com/Remember9/frame/xlog"
 	"github.com/go-redis/redis/v8"
 	"github.com/panjf2000/ants/v2"
 	"time"
@@ -14,8 +14,8 @@ import (
 type Consumer struct {
 	*redisMq
 	groupName string
-	consumer  string               //消费者
-	Func      func(b []byte) error //接收json的处理方式
+	consumer  string               // 消费者
+	Func      func(b []byte) error // 接收json的处理方式
 	Pool      *ants.Pool
 }
 
@@ -55,13 +55,13 @@ func (r *Consumer) Consume(ctx context.Context) (topErr error) {
 			Count: 1,
 			// we use the block command to make sure if no entry is found we wait
 			// until an entry is found
-			//0表示一直阻塞到消息来
-			//1小时超时
+			// 0表示一直阻塞到消息来
+			// 1小时超时
 			Block: time.Hour,
 		}
 		data, err := r.Rdb.XReadGroup(ctx, readArg).Result()
-		//xlog.Infof("get mq data----Group:%s,Consumer:%s,Streams:%s,data:%#v", r.GroupName, r.Consumer, r.Stream, data)
-		//错误休眠2秒后重试
+		// xlog.Infof("get mq data----Group:%s,Consumer:%s,Streams:%s,data:%#v", r.GroupName, r.Consumer, r.Stream, data)
+		// 错误休眠2秒后重试
 
 		if err != nil {
 			xlog.Info("XReadGroup 获取信息异常,2秒后重试", xlog.FieldErr(err), xlog.Any("redis-mq-arg", readArg))
@@ -72,7 +72,7 @@ func (r *Consumer) Consume(ctx context.Context) (topErr error) {
 			xlog.Info("获取data容量为空,retry now")
 			continue
 		}
-		//投入协程池处理
+		// 投入协程池处理
 		if err = r.addPoll(ctx, data[0]); err != nil {
 			xlog.Error("任务协程池异常,2秒后重试", xlog.FieldErr(err))
 			time.Sleep(time.Second * 2)
@@ -93,11 +93,11 @@ func (r *Consumer) addPoll(ctx context.Context, da redis.XStream) (topErr error)
 			xlog.Error("json.Marshal data Err", xlog.Any("redis-mq-data", da), xlog.String("redis-mq-stream", r.stream), xlog.String("redis-mq-groupName", r.groupName), xlog.FieldErr(err))
 		}
 		if err := r.Func(str); err != nil {
-			//错误处理
+			// 错误处理
 			cost := time.Since(st).Milliseconds()
 			xlog.Error("consume data Err", xlog.Any("redis-mq-data", da), xlog.String("redis-mq-stream", r.stream), xlog.String("redis-mq-groupName", r.groupName), xlog.Any("redis-mq-cost", cost), xlog.FieldErr(err))
 		} else {
-			//正常时ack
+			// 正常时ack
 			cost := time.Since(st).Milliseconds()
 			ackRes, ackErr := r.Rdb.XAck(ctx, da.Stream, r.groupName, da.Messages[0].ID).Result()
 			xlog.Info("consume data success", xlog.Any("redis-mq-data", da), xlog.String("redis-mq-stream", r.stream), xlog.String("redis-mq-groupName", r.groupName), xlog.Any("redis-mq-cost", cost),
@@ -151,7 +151,7 @@ func (r *Consumer) DispatchPending(expTime time.Duration, MaxLen int64) {
 		}
 	}()
 	r.Rdb.XGroupCreateMkStream(ctx, r.stream, r.groupName, "0")
-	//加锁，未拿到锁就跳过
+	// 加锁，未拿到锁就跳过
 	lock := rLock.Newlock(r.Rdb, "Pending_"+r.stream, time.Second*300)
 	if !lock.Lock(ctx) {
 		return
@@ -175,7 +175,7 @@ func (r *Consumer) DispatchPending(expTime time.Duration, MaxLen int64) {
 			xExt := &redis.XPendingExtArgs{
 				Stream:   r.stream,
 				Group:    r.groupName,
-				Idle:     expTime, //15分钟未消费的
+				Idle:     expTime, // 15分钟未消费的
 				Start:    "-",
 				End:      "+",
 				Count:    num,
@@ -206,7 +206,7 @@ func (r *Consumer) DispatchPending(expTime time.Duration, MaxLen int64) {
 					continue
 				}
 				if len(rangeList) == 0 {
-					//无法从range中取值，直接ack
+					// 无法从range中取值，直接ack
 					newId := "0"
 					raValue := map[string]interface{}{"last_id": pendid}
 					ack, ackerr := r.Rdb.XAck(ctx, r.stream, r.groupName, pendid).Result()
@@ -215,7 +215,7 @@ func (r *Consumer) DispatchPending(expTime time.Duration, MaxLen int64) {
 						xlog.Any("redis-mqPending-ack", fmt.Sprintf("%v", ack)),
 						xlog.Any("redis-mqPending-ackErr", fmt.Sprintf("%v", ackerr)))
 				} else {
-					//可以从range取值
+					// 可以从range取值
 					ra := rangeList[0]
 					rav := ra.Values
 					rav["last_id"] = ra.ID

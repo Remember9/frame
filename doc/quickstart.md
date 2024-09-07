@@ -80,7 +80,7 @@ func main() {
 import (
 	"context"
 	pinyinClient "esfgit.leju.com/golang/dict/pkg/pinyin/client"
-	clientgrpc "esfgit.leju.com/golang/frame/client/grpc"
+	clientgrpc "github.com/Remember9/frame/client/grpc"
 )
 
 func dialServer() {

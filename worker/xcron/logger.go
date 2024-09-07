@@ -1,6 +1,6 @@
 package xcron
 
-import "esfgit.leju.com/golang/frame/xlog"
+import "github.com/Remember9/frame/xlog"
 
 var logMod = xlog.String("mod", "xcron")
 

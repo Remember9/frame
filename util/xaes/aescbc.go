@@ -4,7 +4,7 @@ import (
 	"crypto/aes"
 	"crypto/cipher"
 	"encoding/base64"
-	"esfgit.leju.com/golang/frame/encode"
+	"github.com/Remember9/frame/encode"
 )
 
 // AesCbcEncrypt aes-cbc 加密

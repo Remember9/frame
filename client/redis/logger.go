@@ -1,7 +1,7 @@
 package redis
 
 import (
-	"esfgit.leju.com/golang/frame/xlog"
+	"github.com/Remember9/frame/xlog"
 	"golang.org/x/net/context"
 )
 

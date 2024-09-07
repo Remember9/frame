@@ -2,15 +2,15 @@ package http
 
 import (
 	"errors"
-	encoding "esfgit.leju.com/golang/frame/util/xencoding"
-	httputil2 "esfgit.leju.com/golang/frame/util/xtransport/httputil"
+	encoding "github.com/Remember9/frame/util/xencoding"
+	httputil2 "github.com/Remember9/frame/util/xtransport/httputil"
 	"io"
 	"net/http"
-	/*_ "esfgit.leju.com/golang/frame/util/xencoding/form"
-	_ "esfgit.leju.com/golang/frame/util/xencoding/json"
-	_ "esfgit.leju.com/golang/frame/util/xencoding/proto"
-	_ "esfgit.leju.com/golang/frame/util/xencoding/xml"
-	_ "esfgit.leju.com/golang/frame/util/xencoding/yaml"*/)
+	/*_ "github.com/Remember9/frame/util/xencoding/form"
+	_ "github.com/Remember9/frame/util/xencoding/json"
+	_ "github.com/Remember9/frame/util/xencoding/proto"
+	_ "github.com/Remember9/frame/util/xencoding/xml"
+	_ "github.com/Remember9/frame/util/xencoding/yaml"*/)
 
 // SupportPackageIsVersion1 These constants should not be referenced from any other code.
 const SupportPackageIsVersion1 = true

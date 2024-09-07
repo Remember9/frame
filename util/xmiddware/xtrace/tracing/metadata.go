@@ -2,8 +2,8 @@ package tracing
 
 import (
 	"context"
-	"esfgit.leju.com/golang/frame/config"
-	"esfgit.leju.com/golang/frame/util/xmiddware/metadata"
+	"github.com/Remember9/frame/config"
+	"github.com/Remember9/frame/util/xmiddware/metadata"
 	"go.opentelemetry.io/otel/propagation"
 )
 

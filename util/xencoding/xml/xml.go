@@ -3,7 +3,7 @@ package xml
 import (
 	"encoding/xml"
 
-	encoding "esfgit.leju.com/golang/frame/util/xencoding"
+	encoding "github.com/Remember9/frame/util/xencoding"
 )
 
 // Name is the name registered for the xml codec.

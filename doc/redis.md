@@ -24,7 +24,7 @@ redis-cluster:
 package doc
 import (
     "context"
-    "esfgit.leju.com/golang/frame/client/redis"
+    "github.com/Remember9/frame/client/redis"
 )
 var ctx = context.Background()
 func (eng *Engine) exampleForRedisStub() (err error) {

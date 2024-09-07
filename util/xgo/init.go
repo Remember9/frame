@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"runtime"
 
+	"github.com/Remember9/frame/util/xstring"
+	"github.com/Remember9/frame/xlog"
 	"github.com/pkg/errors"
-	"esfgit.leju.com/golang/frame/util/xstring"
-	"esfgit.leju.com/golang/frame/xlog"
 	"go.uber.org/zap"
 )
 

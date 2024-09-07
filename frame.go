@@ -2,18 +2,18 @@ package frame
 
 import (
 	"context"
-	"esfgit.leju.com/golang/frame/config"
-	"esfgit.leju.com/golang/frame/flag"
-	"esfgit.leju.com/golang/frame/server"
-	"esfgit.leju.com/golang/frame/signals"
-	"esfgit.leju.com/golang/frame/util/xcycle"
-	"esfgit.leju.com/golang/frame/util/xdefer"
-	"esfgit.leju.com/golang/frame/util/xgo"
-	"esfgit.leju.com/golang/frame/util/xstring"
-	"esfgit.leju.com/golang/frame/worker"
-	job "esfgit.leju.com/golang/frame/worker/xjob"
-	"esfgit.leju.com/golang/frame/xlog"
 	"fmt"
+	"github.com/Remember9/frame/config"
+	"github.com/Remember9/frame/flag"
+	"github.com/Remember9/frame/server"
+	"github.com/Remember9/frame/signals"
+	"github.com/Remember9/frame/util/xcycle"
+	"github.com/Remember9/frame/util/xdefer"
+	"github.com/Remember9/frame/util/xgo"
+	"github.com/Remember9/frame/util/xstring"
+	"github.com/Remember9/frame/worker"
+	job "github.com/Remember9/frame/worker/xjob"
+	"github.com/Remember9/frame/xlog"
 	"go.uber.org/automaxprocs/maxprocs"
 	"golang.org/x/sync/errgroup"
 	"runtime"
@@ -219,7 +219,7 @@ func (app *Application) startJobs() error {
 		return nil
 	}
 	var jobs = make([]func(), 0)
-	//warp jobs
+	// warp jobs
 	for name, runner := range app.jobs {
 		jobs = append(jobs, func() {
 			xlog.Info("job run begin", xlog.String("name", name))

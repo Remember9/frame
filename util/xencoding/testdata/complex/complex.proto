@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option go_package = "esfgit.leju.com/golang/frame/util/xencoding/testdata/complex/;complex";
+option go_package = "github.com/Remember9/frame/util/xencoding/testdata/complex/;complex";
 
 package testproto;
 

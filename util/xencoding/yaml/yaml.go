@@ -1,8 +1,7 @@
 package yaml
 
 import (
-	encoding "esfgit.leju.com/golang/frame/util/xencoding"
-	"gopkg.in/yaml.v3"
+	encoding "github.com/Remember9/frame/util/xencoding"
 )
 
 // Name is the name registered for the yaml codec.

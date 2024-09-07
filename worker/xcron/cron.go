@@ -1,9 +1,9 @@
 package xcron
 
 import (
-	"esfgit.leju.com/golang/frame/client/redis"
-	"esfgit.leju.com/golang/frame/util/xstring"
-	"esfgit.leju.com/golang/frame/xlog"
+	"github.com/Remember9/frame/client/redis"
+	"github.com/Remember9/frame/util/xstring"
+	"github.com/Remember9/frame/xlog"
 	"github.com/robfig/cron/v3"
 	"sync/atomic"
 	"time"
@@ -39,7 +39,7 @@ type (
 	Option = cron.Option
 	// Job ...
 	Job = cron.Job
-	//NamedJob ..
+	// NamedJob ..
 	NamedJob interface {
 		Run() error
 		Name() string

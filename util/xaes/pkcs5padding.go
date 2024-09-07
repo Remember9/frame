@@ -2,7 +2,7 @@ package xaes
 
 import (
 	"bytes"
-	"esfgit.leju.com/golang/frame/encode"
+	"github.com/Remember9/frame/encode"
 )
 
 /*

@@ -1,7 +1,7 @@
 package xnet
 
 import (
-	"esfgit.leju.com/golang/frame/util/xcast"
+	"github.com/Remember9/frame/util/xcast"
 	"net/url"
 	"time"
 )

@@ -2,8 +2,8 @@ package mongox
 
 import (
 	"context"
-	"esfgit.leju.com/golang/frame/config"
-	"esfgit.leju.com/golang/frame/xlog"
+	"github.com/Remember9/frame/config"
+	"github.com/Remember9/frame/xlog"
 	"github.com/qiniu/qmgo"
 	"github.com/qiniu/qmgo/options"
 )

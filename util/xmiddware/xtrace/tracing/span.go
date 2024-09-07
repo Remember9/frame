@@ -2,9 +2,9 @@ package tracing
 
 import (
 	"context"
-	"esfgit.leju.com/golang/frame/util/xmiddware/metadata"
-	"esfgit.leju.com/golang/frame/util/xtransport"
-	http2 "esfgit.leju.com/golang/frame/util/xtransport/http"
+	"github.com/Remember9/frame/util/xmiddware/metadata"
+	"github.com/Remember9/frame/util/xtransport"
+	http2 "github.com/Remember9/frame/util/xtransport/http"
 	"go.opentelemetry.io/otel/attribute"
 	semconv "go.opentelemetry.io/otel/semconv/v1.4.0"
 	"go.opentelemetry.io/otel/trace"
